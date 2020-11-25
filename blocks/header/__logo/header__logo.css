@@ -7,3 +7,10 @@
   margin-left: 27px;
   }
 }
+
+@media screen and (max-width: 540px) {
+  .header__logo {
+  width: 104px;
+  height: 24px;
+  }
+}

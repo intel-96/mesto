@@ -5,8 +5,22 @@
   background: #000000;
   color: #ffffff;
   margin-top: 18px;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 400;
 }
 
 .popup__save-button:hover {
   opacity: 0.8;
+}
+
+@media screen and (max-width: 540px) {
+  .popup__save-button {
+  width: 238px;
+  height: 46px;
+  margin-top: 15px;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 400;
+  }
 }

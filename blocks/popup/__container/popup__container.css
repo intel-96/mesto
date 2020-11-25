@@ -11,3 +11,12 @@
   flex-direction: column;
   align-items: center;
 }
+
+@media screen and (max-width: 540px) {
+  .popup__container {
+  width: 282px;
+  height: 322px;
+  margin-left: -141px;
+  top: 123px;
+  }
+}
