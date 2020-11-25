@@ -3,10 +3,12 @@
   flex-direction: row;
   align-items: baseline;
   gap: 18px;
+  margin-bottom: 16px;
 }
 
 @media screen and (max-width: 719px) {
   .profile__info-edit {
   gap: 10px;
+  margin-bottom: 14px;
   }
 }

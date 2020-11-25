@@ -6,6 +6,8 @@
   font-style: normal;
   margin-top: 34px;
   margin-bottom: 54px;
+  align-self: flex-start;
+  margin-left: 36px;
 }
 
 @media screen and (max-width: 540px) {
@@ -14,5 +16,7 @@
   line-height: 22px;
   margin-top: 25px;
   margin-bottom: 75px;
+  margin-left: 0px;
+  align-self: center;
   }
 }

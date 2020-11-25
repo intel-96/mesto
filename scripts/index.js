@@ -10,23 +10,23 @@ let jobInput = document.querySelector('.popup__input_subtitle');
 function openPopup() {
   popup.classList.add('popup_opened');
 }
-  editButton.addEventListener('click', () => openPopup(popup));
+  editButton.addEventListener('click', openPopup);
 
 // Закрытие попапа
 function closePopup() {
   popup.classList.remove('popup_opened');
 }
-  closeButton.addEventListener('click', () => closePopup(popup));
+  closeButton.addEventListener('click', closePopup);
 
 // Заполнение формы данными со страницы
 function fillProfileInputs() {
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
 }
-editButton.addEventListener('click', () => fillProfileInputs());
+editButton.addEventListener('click', fillProfileInputs);
 
 // Редактирование формы изменения профиля
-let formElement = document.querySelector('.popup__form')
+let formElement = document.querySelector('.popup__form');
 function formSubmitHandler (evt) {
   evt.preventDefault();
   nameProfile.textContent = nameInput.value;

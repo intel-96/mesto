@@ -8,6 +8,8 @@
   font-size: 18px;
   line-height: 22px;
   font-weight: 400;
+  margin-bottom: 37px;
+  border: none;
 }
 
 .popup__save-button:hover {
@@ -21,6 +23,6 @@
   margin-top: 15px;
   font-size: 14px;
   line-height: 17px;
-  font-weight: 400;
+  margin-bottom: 25px;
   }
 }
