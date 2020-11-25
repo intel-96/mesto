@@ -13,3 +13,6 @@
 * HTML5;
 * CSS3;
 * БЭМ.
+
+#### Ссылка на превью:
+https://intel-96.github.io/mesto/index.html
