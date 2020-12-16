@@ -122,7 +122,8 @@ function addRemoveListenerToItem(item) {
   removeButton.addEventListener('click', removeCard);
 }
 
-function addNewCard() {
+function addNewCard(evt) {
+  evt.preventDefault();
   const inputText = inputCardName.value;
   const inputLink = inputCardLink.value;
   const newItem = composeItem({name: inputText, link: inputLink});
