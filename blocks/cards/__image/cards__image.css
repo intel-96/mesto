@@ -1,0 +1,5 @@
+.cards__image {
+  height: 100%;
+  align-self: center;
+  min-height: 282px;
+}
