@@ -10,6 +10,7 @@
   margin-left: auto;
   align-self: center;
   outline: none;
+  cursor: pointer;
 }
 
 .profile__add-button:hover {
