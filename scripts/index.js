@@ -48,18 +48,37 @@ editButton.addEventListener('click', fillProfileInputs);
 
 // Открытие попапа
 function openPopup(modal) {
+  resetValidation(modal);
   modal.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupByEsc);
+  document.addEventListener('mousedown', closePopupByOverlay);
 }
-
 
 // Закрытие попапа
 function closePopup(evt) {
   const targetElement = evt.target;
   if ((targetElement.classList.contains('popup__close-button')) || (targetElement.classList.contains('popup__save-button'))) {
     targetElement.closest('.popup').classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupByEsc);
+    document.removeEventListener('mousedown', closePopupByOverlay);
   }
 }
 
+function closePopupByEsc (evt) {
+  const popupActive = document.querySelector('.popup_opened');
+  if (evt.key === 'Escape') {
+    popupActive.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupByEsc);
+    document.removeEventListener('mousedown', closePopupByOverlay);
+  }
+}
+
+function closePopupByOverlay (evt) {
+  if (evt.target.classList.contains('popup_opened')) {
+    evt.target.classList.remove('popup_opened');
+    document.removeEventListener('click', closePopupByOverlay);
+  }
+}
 
 // Заполнение формы данными со страницы
 function fillProfileInputs() {
