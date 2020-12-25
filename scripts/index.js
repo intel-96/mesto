@@ -54,18 +54,12 @@ function closePopupByEsc (evt) {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
-    document.removeEventListener('keydown', closePopupByEsc);
-    document.removeEventListener('mousedown', closePopupByOverlay);
-    document.removeEventListener('click', closePopupByButtons)
   }
 }
 
 function closePopupByOverlay (evt) {
   if (evt.target.classList.contains('popup_opened')) {
     closePopup(evt.target);
-    document.removeEventListener('click', closePopupByOverlay);
-    document.removeEventListener('keydown', closePopupByEsc);
-    document.removeEventListener('click', closePopupByButtons)
   }
 }
 
