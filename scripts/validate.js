@@ -1,10 +1,20 @@
-const validationConfig = {
+/* const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save-button',
   buttonInvalidClass: 'popup__save-button_type_invalid',
   inputInvalidClass: 'popup__input_state_invalid',
 };
+
+class FormValidator {
+  constructor(config, form) {
+    this._config = config;
+    this._form = form;
+  }
+
+}
+
+
 
 function showError(form, input, config) {
   const error = form.querySelector(`#${input.id}-error`);
@@ -74,3 +84,4 @@ function resetValidation(form) {
 }
 
 enableValidation(validationConfig);
+ */
