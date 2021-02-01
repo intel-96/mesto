@@ -1,32 +1,7 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
+import {initialCards} from './initialCards.js';
 
-const initialCards = [
-  {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 const editProfilePopup = document.querySelector('.popup_type_edit');
 const editButton = document.querySelector('.profile__edit-button');
 const addCardPopup = document.querySelector('.popup_type_add-card');
@@ -41,6 +16,11 @@ const popupImage = document.querySelector('.popup__image');
 const popupImageName = document.querySelector('.popup__image-name');
 const popupTypeImage = document.querySelector('.popup_type_image');
 const formCard = document.querySelector('.popup__form_type_card');
+const formCardSelector = '.popup__form_type_card';
+const formProfileSelector = '.popup__form_type_profile';
+const cardsTemplateSelector = '.cards-template';
+const inputText = document.querySelector('.popup__input_name');
+const inputLink = document.querySelector('.popup__input_link');
 const validationConfig = {
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save-button',
@@ -48,33 +28,15 @@ const validationConfig = {
   inputInvalidClass: 'popup__input_state_invalid',
 };
 
-const validationFormAdd = new FormValidator(validationConfig, '.popup__form_type_card');
+const validationFormAdd = new FormValidator(validationConfig, formCardSelector);
 validationFormAdd.enableValidation();
 
-const validationFormEdit = new FormValidator(validationConfig, '.popup__form_type_profile');
+const validationFormEdit = new FormValidator(validationConfig, formProfileSelector);
 validationFormEdit.enableValidation();
 
-
-addButton.addEventListener('click', () => {
-  formCard.reset();
-  validationFormAdd.resetError();
-  validationFormAdd.setButtonState(false);
-  openPopup(addCardPopup);
-});
-
-editButton.addEventListener('click', () => {
-  fillProfileInputs();
-  validationFormEdit.resetError();
-  validationFormEdit.setButtonState(false);
-  openPopup(editProfilePopup);
-});
-
-formCard.addEventListener('submit', addNewCard);
-formProfile.addEventListener('submit', handleProfileSubmit);
-
 // Открытие попапа
-function openPopup(modal) {
-  modal.classList.add('popup_opened');
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupByEsc);
   document.addEventListener('mousedown', closePopupByOverlay);
   document.addEventListener('click', closePopupByButtons);
@@ -130,7 +92,7 @@ function openImagePopup(link, name) {
 }
 
 function createCard(item) {
-  const sampleCard = new Card(item, '.cards-template', openImagePopup);
+  const sampleCard = new Card(item, cardsTemplateSelector, openImagePopup);
   const card = sampleCard.generateCard();
   return card;
 }
@@ -138,9 +100,9 @@ function createCard(item) {
 function addNewCard(evt) {
   evt.preventDefault();
 
-  const inputText = document.querySelector('.popup__input_name').value;
-  const inputLink = document.querySelector('.popup__input_link').value;
-  const newItem = createCard({ name: inputText, link: inputLink });
+  const textValue = inputText.value;
+  const linkValue = inputLink.value;
+  const newItem = createCard({name: textValue, link: linkValue});
   sectionCards.prepend(newItem);
 
   formCard.reset();
@@ -153,5 +115,20 @@ initialCards.forEach((data) => {
   sectionCards.append(firstCards);
 });
 
+addButton.addEventListener('click', () => {
+  formCard.reset();
+  validationFormAdd.resetError();
+  validationFormAdd.setButtonState(false);
+  openPopup(addCardPopup);
+});
 
+editButton.addEventListener('click', () => {
+  fillProfileInputs();
+  validationFormEdit.resetError();
+  validationFormEdit.setButtonState(false);
+  openPopup(editProfilePopup);
+});
+
+formCard.addEventListener('submit', addNewCard);
+formProfile.addEventListener('submit', handleProfileSubmit);
 

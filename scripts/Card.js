@@ -5,6 +5,7 @@ export default class Card {
     this._image = data.link;
     this._templateSelector = templateSelector;
     this._showPopup = openCallbackImage;
+
   }
 
   _getTemplate() {
@@ -20,10 +21,21 @@ export default class Card {
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
-    this._element.querySelector('.cards__image').src = this._image;
+    this._cardsImage = this._element.querySelector('.cards__image');
+    this._cardsImage.src = this._image;
     this._element.querySelector('.cards__name').textContent = this._name;
-    this._element.querySelector('.cards__image').alt = this._name;
+    this._cardsImage.alt = this._name;
     return this._element;
+  }
+
+  _toggleLike() {
+    this._cardsLikeButton = this._element.querySelector('.cards__like-button');
+    this._cardsLikeButton.classList.toggle('cards__like-button_active');
+  }
+
+  _removeCard() {
+    this._element.remove();
+    this._element = null;
   }
 
   _setEventListeners() {
@@ -38,14 +50,5 @@ export default class Card {
     this._element.querySelector('.cards__image').addEventListener('click', () => {
       this._showPopup(this._image, this._name);
     });
-  }
-
-  _toggleLike() {
-    this._element.querySelector('.cards__like-button').classList.toggle('cards__like-button_active');
-  }
-
-  _removeCard() {
-    this._element.remove();
-    this._element = null;
   }
 }
