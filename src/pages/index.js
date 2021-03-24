@@ -14,20 +14,25 @@ validationFormAdd.enableValidation();
 const validationFormEdit = new FormValidator(validationConfig, formProfileSelector);
 validationFormEdit.enableValidation();
 
+const createCard = (item) => {
+  const card = new Card (item, cardsTemplateSelector, handleCardClick);
+  return card;
+}
+
+
 const addCardPopup = new PopupWithForm({
   popupSelector: '.popup_type_add-card',
   handleFormSubmit: (item) => {
-    const card = new Card(item, cardsTemplateSelector, handleCardClick).generateCard();
-    newCard.addItem(card);
+    const card = createCard(item).generateCard();
+    newCard.prependItem(card);
   }
 });
 
 const newCard = new Section ({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card(item, cardsTemplateSelector, handleCardClick);
-    const cardElement = card.generateCard();
-    newCard.addItem(cardElement);
+    const card = createCard(item).generateCard();
+    newCard.addItem(card);
   }
 },
 '.cards'
@@ -35,6 +40,8 @@ const newCard = new Section ({
 newCard.renderItems();
 
 const fullsizeImagePopup = new PopupWithImage ('.popup_type_image');
+fullsizeImagePopup.setEventListeners();
+
 
 function handleCardClick (name, link) {
   fullsizeImagePopup.open(name, link);
@@ -65,11 +72,9 @@ editButton.addEventListener('click', () => {
 });
 
 addButton.addEventListener('click', () =>{
-  formCard.reset();
   validationFormAdd.resetError();
   validationFormAdd.setButtonState(formCard.checkValidity());
   addCardPopup.open();
-
 });
 
 addCardPopup.setEventListeners();
