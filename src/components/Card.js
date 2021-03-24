@@ -1,10 +1,10 @@
 export default class Card {
 
-  constructor(data, templateSelector, openCallbackImage) {
+  constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._image = data.link;
     this._templateSelector = templateSelector;
-    this._showPopup = openCallbackImage;
+    this._handleCardClick = handleCardClick;
 
   }
 
@@ -48,7 +48,7 @@ export default class Card {
     });
 
     this._element.querySelector('.cards__image').addEventListener('click', () => {
-      this._showPopup(this._image, this._name);
+      this._handleCardClick(this._name, this._image);
     });
   }
 }
