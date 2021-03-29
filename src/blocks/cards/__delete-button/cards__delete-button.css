@@ -12,6 +12,7 @@
   cursor: pointer;
   top: 18px;
   right: 15px;
+  display: none;
 }
 
 .cards__delete-button:hover {
