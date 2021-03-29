@@ -89,8 +89,8 @@ const confirmPopup = new popupWithConfirm({
       .then(() => {
         confirmPopup.close();
         thisCard.removeCard();
+        confirmPopup.close()
       })
-      .then(confirmPopup.close())
       .catch((err) => {
         return console.log(`${err}`);
       })
@@ -99,7 +99,7 @@ const confirmPopup = new popupWithConfirm({
       })
   }
 })
-confirmPopup.setEventListeners();
+
 
 const editAvatarPopup = new PopupWithForm({
   popupSelector: '.popup_type_change-avatar',
@@ -110,8 +110,8 @@ const editAvatarPopup = new PopupWithForm({
     api.patchUserAvatar(inputs.link)
       .then((res) => {
         userInfo.setUserAvatar(res.avatar);
+        editAvatarPopup.close()
       })
-      .then(editAvatarPopup.close())
       .catch((err) => {
         return console.log(`${err}`)
       })
@@ -130,8 +130,8 @@ const editProfilePopup = new PopupWithForm({
     api.patchUserInfo(inputs.username, inputs.job)
       .then((res) => {
         userInfo.setUserInfo(res.name, res.about);
+        editProfilePopup.close()
       })
-      .then (editAvatarPopup.close())
       .catch((err) => {
         return console.log(`${err}`)
       })
@@ -151,8 +151,8 @@ const addCardPopup = new PopupWithForm({
       .then((res) => {
         const newCard = createCard(res);
         newCards.prependItem(newCard);
+        addCardPopup.close()
       })
-      .then(addCardPopup.close())
       .catch((err) => {
         return console.log(`${err}`)
       })
@@ -162,7 +162,15 @@ const addCardPopup = new PopupWithForm({
   }
 })
 
+// Функция, заполняющая данными форму профиля
+function fillProfileInputs () {
+  const userData = userInfo.getUserInfo();
+  nameInput.value = userData.name;
+  jobInput.value = userData.about;
+}
+
 editButton.addEventListener('click', () => {
+  fillProfileInputs();
   validationFormEdit.resetError();
   validationFormEdit.setButtonState(false);
   editProfilePopup.open();
@@ -180,6 +188,7 @@ editAvatarButton.addEventListener('click', () => {
   editAvatarPopup.open();
 })
 
+confirmPopup.setEventListeners();
 addCardPopup.setEventListeners();
 editAvatarPopup.setEventListeners();
 editProfilePopup.setEventListeners();
