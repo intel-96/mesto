@@ -19,5 +19,3 @@
 * ООП;
 * WebPack.
 
-#### Ссылка на превью:
-https://intel-96.github.io/mesto/index.html
